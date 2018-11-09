@@ -19,7 +19,7 @@
 				<p:messages id="messages" />
 
 				<p:fieldset legend="Dados do Aluno" >
-					<h:panelGrid columns="2" >
+					<h:panelGrid columns="2">
 						<p:outputLabel value="Nome:" for="nome" />
 						<p:inputText id="nome" value="#{alunoBean.aluno.nome}"
 							required="true" requiredMessage="Nome obrigatório" >
@@ -46,14 +46,13 @@
 						<p:inputMask id="telefone" value="#{alunoBean.aluno.telefone}" mask="(99) 99999-9999" required="true" />
 
 						<p:outputLabel value="Selecione o professor:" for="professor" />
-						<p:selectOneMenu value="#{alunoBean.professorId}" id="professor" style="width: 170px;" required="true">
+						<p:selectOneMenu value="#{alunoBean.professorId}" id="professor" style="width: 170px;" >
 							<f:selectItems value="#{alunoBean.professores}" var="professor" itemLabel="#{professor.nome}" itemValue="#{professor.id}" 
-							process="@this professor" />
+								actionListener="#{alunoBean.gravarProfessor}" process="@this professor"/>
 						</p:selectOneMenu>
 						<p:commandButton value="Gravar Professor" action="#{alunoBean.gravarProfessor}" 
-								process="@this professor" >
+								process="@this professor">
 						</p:commandButton>
-						
 					</h:panelGrid>
 				</p:fieldset>
 				<br />
@@ -90,11 +89,6 @@
 				<p:column headerText="Telefone" sortBy="#{aluno.telefone}" filterBy="#{aluno.telefone}" 
 				filterMatchMode="contains" style="text-align:center;">
 					<h:outputText value="#{aluno.telefone}" />
-				</p:column >
-				
-				<p:column headerText="Professor" sortBy="#{aluno.getProfessoresDoAluno}" filterBy="#{aluno.getProfessoresDoAluno}" 
-				filterMatchMode="contains" style="text-align:center;">
-					<h:outputText value="#{aluno.getProfessoresDoAluno}" />
 				</p:column>
 				
 				<p:column style="width:45px;text-align:center">
